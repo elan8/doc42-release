@@ -8,7 +8,7 @@ branding:
 inputs:
   version:
     description: Doc42 version to install.
-    default: "0.4.0"
+    default: "0.5.0"
   args:
     description: >-
       Arguments for one doc42 run, for example `build model --doc Docs::srs --out out`.
@@ -34,7 +34,7 @@ runs:
       run: |
         set -euo pipefail
         if [[ "$RUNNER_OS" != "Linux" || "$RUNNER_ARCH" != "X64" ]]; then
-          echo "::error::Doc42 $DOC42_VERSION is published for Linux x64 runners only."
+          echo "::error::The action installs Doc42 on Linux x64 runners only. On Windows, download the release archive."
           exit 1
         fi
         if [[ ! "$DOC42_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -42,7 +42,7 @@ runs:
           exit 1
         fi
         archive="doc42-$DOC42_VERSION-linux-x64.tar.gz"
-        base="https://github.com/elan8/doc42-action/releases/download/v$DOC42_VERSION"
+        base="https://github.com/elan8/doc42-release/releases/download/v$DOC42_VERSION"
         dir="$RUNNER_TEMP/doc42-$DOC42_VERSION"
         mkdir -p "$dir"
         curl --fail --silent --show-error --location --retry 3 -o "$dir/$archive" "$base/$archive"
