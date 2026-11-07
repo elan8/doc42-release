@@ -39,7 +39,9 @@ Run42 and later tools follow the same pattern.
    `LICENSE.md` and the source's `THIRD_PARTY_NOTICES.md` and `THIRD_PARTY_LICENSES.md`.
    Write `SHA256SUMS.txt` with `sha256sum` over both archives.
 5. In this repository, set the `version` default in `action.yml` and the versions in
-   `README.md`, and merge.
+   `README.md`. Bring `docs/` and `examples/` up to date with the source's `docs/` and
+   `examples/`, leaving out what only concerns developing Doc42 (building from source,
+   contributor checks), and rebuild every sample with the new executable. Merge.
 6. Tag `v<version>` in `elan8/doc42` and create the release `v<version>` here on that
    `main` commit, with the three files and release notes that name the Spec42
    version Doc42 is built with.

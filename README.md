@@ -9,6 +9,12 @@ This repository publishes Doc42: the `doc42` command-line tool for Linux and
 Windows, and a GitHub Action that installs it. Doc42 is closed-source software by
 [Elan8](https://elan8.com).
 
+The [documentation](docs/README.md) covers [getting started](docs/getting-started.md),
+[authoring documents](docs/authoring.md), [templates](docs/templates.md) and
+[automation](docs/automation.md). The [samples](examples) include four documents for a
+small product, a requirements specification with diagrams, and a
+[house template](examples/house-template) to start your own from.
+
 ## Install
 
 Download the archive for your platform and `SHA256SUMS.txt` from the
@@ -155,7 +161,8 @@ the deeper ones closed; without it, every level is drawn.
 Built-in templates: `crs` (customer requirements), `srs` (system requirements),
 `sds` (system design), `test` (test specification), `verification-report` and
 the general `elan8-standard`. `doc42 template export <name> <dir>` writes one as
-the starting point for your own.
+the starting point for your own; [Templates](docs/templates.md) explains how to adapt
+it, and [`examples/house-template`](examples/house-template) shows the usual edits.
 
 Doc42 reads models with [Spec42](https://github.com/elan8/spec42), the
 open-source SysML v2 toolchain by Elan8. Pass additional SysML libraries with
