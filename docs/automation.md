@@ -8,6 +8,19 @@ doc42 ir model --doc ProductDocs::srs > out/srs.ir.json
 doc42 build model --doc ProductDocs::srs --out out
 ```
 
+To build every document of a model, load it once with `--all`:
+
+```sh
+doc42 build model --all --out out --json > out/manifest.json
+```
+
+Each document is checked before any is rendered, so an error in one leaves no partial set
+of PDFs; two documents with the same number, and so the same file, are refused. With
+`--json`, `build` prints a manifest: each document's `file`, `qualified_name`, `title`,
+`subtitle`, `organization`, `number`, `revision` and `status`, and the error and warning
+counts. `list --json` reports the same metadata without a license, for a page or a release
+note that links the documents.
+
 Create `out` before redirecting IR. Exit codes: 0 means success; 1 means validation
 errors (including a draft rendered despite errors); 2 means a command, selection,
 load, output or rendering failure. `check --json` returns source file count, documents,
@@ -27,6 +40,17 @@ your release job should inspect the JSON warning count and apply an explicit pol
 `--draft` labels the PDF status as DRAFT. A rendered draft with errors still returns
 nonzero. A document status string or successful compilation does not constitute approval.
 `list` is discovery, not a release gate; use `check` for validation.
+
+Doc42 checks that every figure stays readable where it is placed. When a figure's smallest
+text would print below 5 pt, `check`, `build` and `ir` report `doc42-figure-text-size` as a
+warning, naming the size and the page. Spec42 draws its smallest labels at 6 pt, so 5 pt
+leaves a diagram room to scale. `--min-text-size <pt>` sets another minimum, and
+`--strict` reports these figures as errors, so a release job stops on an unreadable figure:
+
+```sh
+doc42 check model --strict
+doc42 build model --all --out dist --strict
+```
 
 For reproducible builds, pin the Doc42 version, the domain-library revision, templates and
 model/prose inputs. The renderer uses bundled fonts, no clock, no generated timestamps,

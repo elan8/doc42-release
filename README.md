@@ -50,7 +50,7 @@ jobs:
           repository: elan8/sysml-domain-libraries
           path: .libraries/sysml-domain-libraries
 
-      - uses: elan8/doc42-release@v0.5.0
+      - uses: elan8/doc42-release@v0.6.0
 
       - run: doc42 check model --library-path .libraries/sysml-domain-libraries/model
 
@@ -71,7 +71,7 @@ run a single command in the same step, pass it as `args` and set `ELAN8_LICENSE`
 on that step:
 
 ```yaml
-- uses: elan8/doc42-release@v0.5.0
+- uses: elan8/doc42-release@v0.6.0
   with:
     args: build model --library-path .libraries/sysml-domain-libraries/model --doc ProductDocs::srs --out out
   env:
@@ -80,7 +80,7 @@ on that step:
 
 | Input | Default | Meaning |
 | --- | --- | --- |
-| `version` | `0.5.0` | Doc42 version to install |
+| `version` | `0.6.0` | Doc42 version to install |
 | `args` | empty | Arguments for one `doc42` run; empty installs only |
 | `working-directory` | `.` | Directory to run `doc42` in |
 
