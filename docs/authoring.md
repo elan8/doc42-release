@@ -172,10 +172,15 @@ view interconnection : InterconnectionView {
 }
 ```
 
-Large SVG diagrams are placed on native-size drawing sheets rather than reduced to
-tiny labels on an A4 page. The diagram's native 96 dpi dimensions determine the sheet
-size; report text remains on standard pages. Standalone bold paragraphs are kept with
-the following content, which is useful for procedure IDs in prose files.
+Every page is A4. A diagram that fits the text width stays in the text at its natural size;
+one that stays readable when scaled to the text width (to 65 % or more) stays in the text,
+scaled. Only a larger diagram gets a page of its own, landscape when that shows it clearly
+larger. Limit a large interconnection diagram with `@Diagram { depth = n; }` to keep it on
+the page. Doc42 reports a figure whose smallest text would print below 5 pt
+(`doc42-figure-text-size`, with the printed size): narrow the view's `expose`, lower its
+depth, or split it into several views. Authored SVG figures are checked the same way, from
+the `font-size` they set. Standalone bold paragraphs are kept with the following content,
+which is useful for procedure IDs in prose files.
 
 `doc42 ir` exports document, section, table, row and figure provenance. Preserve this IR
 with the model baseline when reviewing generated content. Prose statements are authored

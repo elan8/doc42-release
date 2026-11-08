@@ -10,6 +10,8 @@ doc42 build examples/document-suite --doc MonitorDocs::crs --out out --library-p
 doc42 build examples/document-suite --doc MonitorDocs::srs --out out --library-path sysml-domain-libraries/model
 doc42 build examples/document-suite --doc MonitorDocs::test --out out --library-path sysml-domain-libraries/model
 doc42 build examples/document-suite --doc MonitorDocs::verificationReport --out out --library-path sysml-domain-libraries/model
+# or all four in one run:
+doc42 build examples/document-suite --all --out out --library-path sysml-domain-libraries/model
 ```
 
 Copy this directory to begin a project. Replace the model, qualified references,

@@ -15,4 +15,4 @@ The samples are in [`examples/`](../examples):
 | [`drone-srs`](../examples/drone-srs) | A system requirements specification with requirement tables and model-backed diagrams |
 | [`house-template`](../examples/house-template) | A house template made from `elan8-standard`: logo, colours and title page |
 
-These pages describe Doc42 0.5.0.
+These pages describe Doc42 0.6.0.
