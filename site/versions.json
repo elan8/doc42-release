@@ -1,0 +1,18 @@
+{
+  "latest": "0.6",
+  "next": "0.7",
+  "versions": [
+    {
+      "id": "0.6",
+      "release": "0.6.0",
+      "status": "released",
+      "ref": "v0.6.0"
+    },
+    {
+      "id": "0.7",
+      "release": "0.7.0",
+      "status": "preview",
+      "ref": "versioned-docs-0.7"
+    }
+  ]
+}

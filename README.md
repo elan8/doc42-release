@@ -9,6 +9,8 @@ This repository publishes Doc42: the `doc42` command-line tool for Linux and
 Windows, and a GitHub Action that installs it. Doc42 is closed-source software by
 [Elan8](https://elan8.com).
 
+Documentation is versioned: [0.6 (current)](docs/0.6/index.md) and
+[0.7 (unreleased preview)](docs/0.7/index.md). Use the guide matching `doc42 --version`.
 The [documentation](docs/README.md) covers [getting started](docs/getting-started.md),
 [authoring documents](docs/authoring.md), [templates](docs/templates.md) and
 [automation](docs/automation.md). The [samples](examples) include four documents for a
