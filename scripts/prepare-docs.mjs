@@ -12,7 +12,7 @@ export function versionManifest() {
     if (!version.pages.includes('index')) throw new Error(`Missing index for ${version.id}`);
   }
   if (source.versions.find(v => v.id === source.latest)?.status !== 'released') throw new Error('latest must point to a released version');
-  if (!ids.has(source.next)) throw new Error('next must point to an existing version');
+  if (source.versions.find(v => v.id === source.next)?.status !== 'preview') throw new Error('next must point to an unreleased preview version');
   return source;
 }
 export function generate() {

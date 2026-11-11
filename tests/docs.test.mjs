@@ -7,11 +7,13 @@ import { generate, root } from '../scripts/prepare-docs.mjs';
 const manifest = generate();
 const output = page => readFileSync(resolve(root, 'site/.generated', page), 'utf8');
 test('stable aliases never advertise unreleased behavior', () => {
-  assert.equal(manifest.latest, '0.6');
-  assert.match(output('latest/getting-started.md'), /ELAN8_LICENSE/);
-  assert.doesNotMatch(output('latest/getting-started.md'), /doc42 login/);
-  assert.match(output('next/getting-started.md'), /doc42 login/);
-  assert.match(output('next/getting-started.md'), /docStatus: 'preview'/);
+  assert.equal(manifest.latest, '0.7');
+  assert.match(output('latest/getting-started.md'), /doc42 login/);
+  assert.match(output('latest/getting-started.md'), /--branch v0\.7\.0/);
+  assert.match(output('latest/getting-started.md'), /docStatus: 'released'/);
+  assert.doesNotMatch(output('latest/getting-started.md'), /0\.7\.0 preview|versioned-docs-0\.7/);
+  assert.match(output('next/index.md'), /docStatus: 'preview'/);
+  assert.match(output('next/index.md'), /No 0\.8 executable is/);
 });
 test('archived 0.6 authoring sources match the actual release tag', () => {
   for (const file of ['getting-started.md', 'authoring.md', 'templates.md', 'automation.md']) {

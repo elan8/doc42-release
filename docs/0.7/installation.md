@@ -1,7 +1,6 @@
 # Install Doc42
 
-These instructions target **0.7.0, which is not released yet**. Use [0.6](/0.6/getting-started)
-for the current release. When 0.7.0 is published, download the matching archive and
+These instructions target **Doc42 0.7.0**. Download the matching archive and
 `SHA256SUMS.txt` from [releases](https://github.com/elan8/doc42-release/releases).
 
 ## Windows x64

@@ -13,7 +13,7 @@ The account must have access appropriate for the pipeline: Solo covers only its
 subscriber's own work. Teams and shared pipelines require Business; check current
 availability with Elan8 before configuring shared use.
 
-A GitHub Actions step (when the 0.7.0 release is available):
+A GitHub Actions step:
 
 ```yaml
 - uses: elan8/doc42-release@v0.7.0

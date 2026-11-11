@@ -1,6 +1,6 @@
 # Documentation publishing
 
-The site uses VitePress. Sources live in docs/0.6 and docs/0.7, not in the generated
+The site uses VitePress. Sources live in versioned docs/ directories, not in the generated
 site/.generated directory. Version metadata is in site/versions.json. The site
 builds /0.6/, /0.7/, /latest/ and /next/; latest must name a released version.
 The navigation selector keeps the current page when the destination version has it,
@@ -25,9 +25,9 @@ dependencies. Review updates deliberately; npm audit currently reports no adviso
 
 The 0.6 source pages are exact snapshots from tag v0.6.0. Do not change them to
 show 0.7 behavior. Advance latest and the action default only after the matching
-binaries and checksums are published. Keep 0.7 labeled preview until then.
-Update links from the preview branch to v0.7.0 at release time. A future next
-channel should point to its own preview version, never silently change old guides.
+binaries and checksums are published. Doc42 0.7 is the current release; the next
+channel points to the separate 0.8 placeholder, which is explicitly unreleased.
+Use release tags for released examples and guides; never silently change old guides.
 
 Run scripts/validate-release-examples.py against the matching packaged executable
 with an ELAN8_TOKEN secret and the pinned domain library before marking 0.7 released.

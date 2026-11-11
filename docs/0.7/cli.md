@@ -1,6 +1,6 @@
 # CLI reference
 
-These commands describe Doc42 0.7.0 preview. Run `doc42 <command> --help` for all options.
+These commands describe Doc42 0.7.0. Run `doc42 <command> --help` for all options.
 
 | Command | Purpose | Access |
 | --- | --- | --- |

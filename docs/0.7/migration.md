@@ -1,7 +1,7 @@
 # Migrate from 0.6 to 0.7
 
-0.7.0 is a preview until its binary release is published. Keep the 0.6 executable
-and [0.6 documentation](/0.6/) together if you need the currently released version.
+Doc42 0.7.0 replaces signed-license configuration with API-token authentication.
+Keep the 0.6 executable and [0.6 documentation](/0.6/) together if you retain that version.
 
 | 0.6 | 0.7 |
 | --- | --- |

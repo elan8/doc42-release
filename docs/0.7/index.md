@@ -1,7 +1,7 @@
 # Doc42 0.7
 
-Generate engineering PDFs from SysML v2 document views. This is the **0.7.0 preview**;
-use [0.6 documentation](/0.6/) with the released 0.6 executable.
+Generate engineering PDFs from SysML v2 document views with **Doc42 0.7.0**.
+Use the [0.6 documentation](/0.6/) for an existing 0.6 installation.
 
 Start with [installation](installation.md), then [your first PDF](getting-started.md).
 Learn [document authoring](authoring.md), [templates](templates.md),
@@ -12,7 +12,7 @@ The [CLI reference](cli.md) and [troubleshooting guide](troubleshooting.md) expl
 
 | Component | Baseline |
 | --- | --- |
-| Doc42 | 0.7.0 preview |
+| Doc42 | 0.7.0 |
 | Spec42 engine | 0.60.1, embedded; a separate Spec42 installation is not required |
 | SysML standard library | 2026-04, embedded |
 | Domain libraries | revision `146fe5ca70e76d8692e96f4a666e974592c40abc` |

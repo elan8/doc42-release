@@ -1,15 +1,14 @@
 # Your first PDF
 
-Follow [installation](installation.md) first. This guide targets Doc42 **0.7.0 preview**.
+Follow [installation](installation.md) first. This guide targets Doc42 **0.7.0**.
 It uses one small model and produces `out/FIRST-001.pdf`.
 
 ## 1. Get the example and its library
 
-Download or clone the release repository and check out the 0.7 preview branch.
-This branch is a preview, not a published binary release.
+Download or clone the release repository at the matching release tag.
 
 ```sh
-git clone --branch versioned-docs-0.7 https://github.com/elan8/doc42-release
+git clone --branch v0.7.0 https://github.com/elan8/doc42-release
 cd doc42-release
 git clone https://github.com/elan8/sysml-domain-libraries
 git -C sysml-domain-libraries checkout 146fe5ca70e76d8692e96f4a666e974592c40abc
