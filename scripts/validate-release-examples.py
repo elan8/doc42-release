@@ -11,7 +11,7 @@ def main():
     parser.add_argument('--doc42', required=True, help='Packaged executable to test')
     parser.add_argument('--library-path', required=True)
     parser.add_argument('--examples-root', default='examples')
-    parser.add_argument('--version', default='0.7.0')
+    parser.add_argument('--version', default='0.8.0')
     args = parser.parse_args()
     executable = str(Path(args.doc42).resolve())
     library = str(Path(args.library_path).resolve())

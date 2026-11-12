@@ -1,6 +1,6 @@
 # Install Doc42
 
-These instructions target **Doc42 0.7.0**. Download the matching archive and
+These instructions target **Doc42 0.8.0**. Download the matching archive and
 `SHA256SUMS.txt` from [releases](https://github.com/elan8/doc42-release/releases).
 
 ## Windows x64
@@ -9,8 +9,8 @@ Check the ZIP hash against the published checksums, extract it, and add the dire
 containing `doc42.exe` to PATH. No additional Visual C++ runtime is needed.
 
 ```powershell
-Get-FileHash doc42-0.7.0-windows-x64.zip -Algorithm SHA256
-Expand-Archive doc42-0.7.0-windows-x64.zip -DestinationPath doc42
+Get-FileHash doc42-0.8.0-windows-x64.zip -Algorithm SHA256
+Expand-Archive doc42-0.8.0-windows-x64.zip -DestinationPath doc42
 ./doc42/doc42.exe --version
 ```
 
@@ -20,7 +20,7 @@ Requires glibc 2.35 or later, such as Ubuntu 22.04. Check and extract the archiv
 
 ```sh
 sha256sum --check --ignore-missing SHA256SUMS.txt
-tar -xzf doc42-0.7.0-linux-x64.tar.gz
+tar -xzf doc42-0.8.0-linux-x64.tar.gz
 ./doc42 --version
 ```
 
