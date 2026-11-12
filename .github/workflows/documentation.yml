@@ -1,8 +1,8 @@
-name: Versioned documentation
+name: Documentation
 on:
   push:
     branches: [main]
-    paths: ['docs/**', 'site/**', 'scripts/**', 'examples/**', 'package*.json', '.github/workflows/documentation.yml']
+    paths: ['CAPABILITIES.md', 'docs/**', 'site/**', 'scripts/**', 'examples/**', 'package*.json', '.github/workflows/documentation.yml']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -14,10 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: npm

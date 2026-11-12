@@ -1,7 +1,7 @@
 # Accounts, API tokens and offline use
 
-Doc42 0.7 obtains a signed license with an API token. **0.6 uses ELAN8_LICENSE instead**;
-see [migration](migration.md) before updating an existing installation.
+Doc42 obtains a signed license with an Elan8 API token. Your account needs active
+Doc42 access to generate PDFs and export document IR.
 
 ## Sign in on your computer
 

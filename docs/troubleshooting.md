@@ -1,10 +1,9 @@
 # Troubleshooting
 
-## No API token, or old ELAN8_LICENSE
+## No API token
 
-For Doc42 0.7, create an API token and run `doc42 login`, or set ELAN8_TOKEN from
-a secret store. An elan8ci_ signed license is not an elan8_ API token. Follow the
-[0.6 instructions](/0.6/getting-started) when running the old executable.
+For Doc42 0.8, create an API token and run `doc42 login`, or set ELAN8_TOKEN from
+a secret store. A signed license is not an API token.
 
 ## Token unknown, expired or revoked
 
