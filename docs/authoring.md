@@ -100,7 +100,9 @@ The rows are what Spec42 evaluates the section's `expose` and `filter` statement
 `expose Package::*` exposes the members of a package or of a requirement group. `kind` keeps
 only elements of one kind (`"requirement"`, `"part"`, `"connection"`, `"part def"`, ...).
 Rows are in the order the elements are written in the model, or ordered by the column `sort`
-names. `caption` adds a caption. A section can have several `@Table` annotations.
+names. `caption` adds a caption. `verdicts` names a JSON file, relative to the annotation and
+inside the workspace, when a column reads a run's verdict. A section can have several `@Table`
+annotations.
 
 `columns` lists the columns, separated by commas, each as `Title = content` or as the content
 alone:
@@ -117,6 +119,8 @@ alone:
 | `.feature`, `.a.b` | The value of a feature of the element, as in `{{= ...}}` |
 | `@Metadata.feature` | A value of a metadata annotation of the element, e.g. `@Rationale.text` |
 | `relation / content` | The content for each element a relation column names, each distinct line once: `verified-by / @VerificationMethod.kind` lists the methods of the cases that verify a requirement, `derived-from / id` the identifiers of its parents. One step only. |
+
+| `verdict`, `verdict-time`, `verdict-state`, `verdict-charge`, `verdict-detail` | The record in the table's `verdicts` file whose `case_name` is the element's qualified name. The file is the JSON list a run wrote. A missing file, a case with no record, or a record Doc42 cannot read is not a pass: the cell says `not run`. |
 
 An element without the feature or the annotation has an empty cell. A feature whose value
 Spec42 does not fold to a constant leaves the cell empty and produces a warning. A column of

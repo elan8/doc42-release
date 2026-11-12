@@ -11,7 +11,7 @@ Download or clone the release repository at the matching release tag.
 git clone --branch v0.8.0 https://github.com/elan8/doc42-release
 cd doc42-release
 git clone https://github.com/elan8/sysml-domain-libraries
-git -C sysml-domain-libraries checkout 146fe5ca70e76d8692e96f4a666e974592c40abc
+git -C sysml-domain-libraries checkout 4c73195b2f64176696b2e0f4d72606bfd044dcef
 ```
 
 The example contains two prose sections. Its document vocabulary comes from the
