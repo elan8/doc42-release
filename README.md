@@ -89,9 +89,8 @@ on that step:
 The output `executable-path` is the path of the installed executable.
 
 A working example is the
-[robot vacuum cleaner showcase](https://github.com/elan8/sysml-robot-vacuum-cleaner),
-which builds its customer requirements, system requirements, system design and
-verification documents.
+[kitchen timer CI workflow](https://github.com/elan8/sysml-kitchen-timer/actions/workflows/ci.yml),
+which validates the model with Spec42 and builds four engineering documents with Doc42.
 
 ## API-token authentication
 
