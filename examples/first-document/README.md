@@ -1,6 +1,6 @@
 # First document
 
-Doc42 0.7.0 starter: one document, two prose sections, and the built-in template.
+Doc42 starter: one document, two prose sections, and the built-in template.
 The command below is identical on Windows PowerShell and Linux shells. From the
 repository root, install the domain library beside this checkout and use its model directory:
 
