@@ -9,6 +9,8 @@ This repository publishes Doc42: the `doc42` command-line tool for Linux and
 Windows, and a GitHub Action that installs it. Doc42 is closed-source software by
 [Elan8](https://elan8.com).
 
+Documentation is versioned: [0.7 (current)](docs/0.7/index.md) and
+[0.6 (archive)](docs/0.6/index.md). Use the guide matching `doc42 --version`.
 The [documentation](docs/README.md) covers [getting started](docs/getting-started.md),
 [authoring documents](docs/authoring.md), [templates](docs/templates.md) and
 [automation](docs/automation.md). The [samples](examples) include four documents for a
@@ -50,7 +52,7 @@ jobs:
           repository: elan8/sysml-domain-libraries
           path: .libraries/sysml-domain-libraries
 
-      - uses: elan8/doc42-release@v0.6.0
+      - uses: elan8/doc42-release@v0.7.0
 
       - run: doc42 check model --library-path .libraries/sysml-domain-libraries/model
 
@@ -58,7 +60,7 @@ jobs:
           doc42 build model --library-path .libraries/sysml-domain-libraries/model
           --doc ProductDocs::srs --out out
         env:
-          ELAN8_LICENSE: ${{ secrets.ELAN8_LICENSE }}
+          ELAN8_TOKEN: ${{ secrets.ELAN8_TOKEN }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -67,20 +69,20 @@ jobs:
 ```
 
 The action installs Doc42 on Linux x64 runners and puts `doc42` on the `PATH`. To
-run a single command in the same step, pass it as `args` and set `ELAN8_LICENSE`
+run a single command in the same step, pass it as `args` and set `ELAN8_TOKEN`
 on that step:
 
 ```yaml
-- uses: elan8/doc42-release@v0.6.0
+- uses: elan8/doc42-release@v0.7.0
   with:
     args: build model --library-path .libraries/sysml-domain-libraries/model --doc ProductDocs::srs --out out
   env:
-    ELAN8_LICENSE: ${{ secrets.ELAN8_LICENSE }}
+    ELAN8_TOKEN: ${{ secrets.ELAN8_TOKEN }}
 ```
 
 | Input | Default | Meaning |
 | --- | --- | --- |
-| `version` | `0.6.0` | Doc42 version to install |
+| `version` | `0.7.0` | Doc42 version to install |
 | `args` | empty | Arguments for one `doc42` run; empty installs only |
 | `working-directory` | `.` | Directory to run `doc42` in |
 
@@ -95,17 +97,21 @@ This repository was called `doc42-action` until version 0.4.0. Download links
 and `elan8/doc42-action@v0.4.0` keep working through GitHub's redirect; use
 `elan8/doc42-release` in new workflows.
 
-## License key
+## API-token authentication
 
-`doc42 list`, `doc42 check`, `doc42 license` and `doc42 template` work without a
-license. `doc42 build` and `doc42 ir` need one.
+`doc42 list`, `doc42 check` and template operations need no account or license.
+`doc42 build` and `doc42 ir` require Doc42 access and an Elan8 API token.
 
-A license is a token that starts with `elan8ci_`. Set it in the `ELAN8_LICENSE`
-environment variable; in GitHub Actions, store it as a repository or organization
-secret and pass it to the step through the environment, as shown above. Doc42
-verifies the token offline against Elan8's public keys; it does not contact any
-server and does not send your model anywhere. `doc42 license` shows who a token is
-issued to and how long it is valid.
+Create a token on your [Elan8 account](https://www.elan8.com/account?section=tokens).
+Run `doc42 login` locally; the prompt hides the token. In GitHub Actions, store
+it as `ELAN8_TOKEN` and pass it only to the step that generates documents.
+`ELAN8_LICENSE` belongs to 0.6 and is no longer used in 0.7.
+
+Doc42 exchanges the token online for a signed license, verifies it locally and
+refreshes it after 24 hours. If Elan8 is unreachable, an already cached license
+works until it expires, at most 48 hours after issuance. Models and documents
+stay on the runner. `doc42 license` reports status without printing credentials;
+`doc42 logout` removes the saved token and cached licenses.
 
 Secrets are not available to pull requests from forks. Skip the build step for
 them:

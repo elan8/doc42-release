@@ -1,0 +1,10 @@
+:root { --vp-c-brand-1: #0e7490; --vp-c-brand-2: #0891b2; --vp-c-brand-3: #0891b2; --vp-c-brand-soft: #0891b21a; --vp-font-family-base: Inter, system-ui, sans-serif; }
+.doc-version { margin-left: 20px; max-width: 180px; padding: 7px 10px; border: 1px solid var(--vp-c-divider); border-radius: 8px; background: var(--vp-c-bg); color: var(--vp-c-text-1); font-size: 13px; }
+.doc-version:focus-visible { outline: 2px solid var(--vp-c-brand-1); outline-offset: 3px; }
+.version-notice { padding: 16px 20px; margin-bottom: 24px; border: 1px solid var(--vp-c-divider); border-radius: 10px; background: var(--vp-c-bg-soft); }
+.version-notice.preview { border-color: #d97706; }
+.version-notice p { margin: 8px 0 0; font-size: 14px; line-height: 1.6; }
+.version-notice a { color: var(--vp-c-brand-1); text-decoration: underline; }
+@media (max-width: 480px) { .doc-version { margin-left: 8px; max-width: 125px; } }
+
+.dark { --vp-c-brand-1: #67e8f9; --vp-c-brand-2: #22d3ee; --vp-c-brand-3: #0891b2; }
