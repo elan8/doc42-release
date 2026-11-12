@@ -2,4 +2,3 @@
 
 These guides describe **Doc42 0.8.0**. Start with the [overview](index.md),
 [installation](installation.md), and [your first PDF](getting-started.md).
-The [capability reference](capabilities.md) lists permissions for administrators.

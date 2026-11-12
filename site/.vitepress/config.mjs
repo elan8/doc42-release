@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-const pages = { index: 'Overview', installation: 'Installation', 'getting-started': 'Your first PDF', authentication: 'Accounts and API tokens', capabilities: 'Permissions and capabilities', authoring: 'Authoring documents', templates: 'Templates', examples: 'Examples', automation: 'Automation', cli: 'CLI reference', troubleshooting: 'Troubleshooting' };
+const pages = { index: 'Overview', installation: 'Installation', 'getting-started': 'Your first PDF', authentication: 'Accounts and API tokens', authoring: 'Authoring documents', templates: 'Templates', examples: 'Examples', automation: 'Automation', cli: 'CLI reference', troubleshooting: 'Troubleshooting' };
 const base = process.env.DOCS_BASE || '/doc42-release/';
 export default defineConfig({
   title: 'Doc42', description: 'Engineering documents from SysML v2 models — guides and CLI reference.',

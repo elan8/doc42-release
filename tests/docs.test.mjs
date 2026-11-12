@@ -32,8 +32,11 @@ test('every repository-relative Markdown link resolves', () => {
   }
 });
 
-test('administrators get the same capability reference as packaged users', () => {
-  assert.equal(readFileSync(resolve(root, 'CAPABILITIES.md'), 'utf8'), readFileSync(resolve(root, 'docs/capabilities.md'), 'utf8'));
-  assert.match(output('capabilities.md'), /doc42\.generate/);
-  assert.match(output('capabilities.md'), /Unfamiliar capabilities for other/);
+test('public documentation excludes internal permission and administration references', () => {
+  assert.equal(existsSync(resolve(root, 'CAPABILITIES.md')), false);
+  assert.equal(existsSync(resolve(root, 'site/.generated/capabilities.md')), false);
+  for (const file of ['README.md', 'docs/README.md', 'site/.vitepress/config.mjs', ...pages.map(page => 'docs/' + page)]) {
+    const content = readFileSync(resolve(root, file), 'utf8');
+    assert.doesNotMatch(content, /CAPABILITIES\.md|capabilities\.md|doc42\.generate|run42\.simulate|Products and permissions|\/capabilities\b/i, file);
+  }
 });

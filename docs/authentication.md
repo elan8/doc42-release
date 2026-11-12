@@ -1,8 +1,7 @@
 # Accounts, API tokens and offline use
 
-Doc42 obtains a signed license with an Elan8 API token. Your subscription determines
-which permissions the backend grants; Doc42 requires `doc42.generate` to build PDFs
-and export document IR. See the [capability reference](capabilities.md).
+Doc42 obtains a signed license with an Elan8 API token. Your account needs active
+Doc42 access to generate PDFs and export document IR.
 
 ## Sign in on your computer
 
