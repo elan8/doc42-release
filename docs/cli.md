@@ -1,6 +1,6 @@
 # CLI reference
 
-These commands describe Doc42 0.8.0. Run `doc42 <command> --help` for all options.
+These commands describe Doc42 0.8.1. Run `doc42 <command> --help` for all options.
 
 | Command | Purpose | Access |
 | --- | --- | --- |
@@ -18,6 +18,7 @@ These commands describe Doc42 0.8.0. Run `doc42 <command> --help` for all option
 
 - `<model>` is a .sysml file or directory; default is the current directory.
 - Repeat `--library-path <directory>` for project libraries.
+- The public document vocabulary is embedded; no path is needed for `Elan8::Documents`.
 - `--workspace-root <directory>` widens the workspace boundary for a single-file input.
 - `--cache-dir <directory>` selects the model cache, separate from the license cache.
 - `--doc <qualified-name>` selects a document for check, build or ir.

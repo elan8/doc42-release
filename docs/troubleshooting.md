@@ -31,8 +31,13 @@ are not a production workaround.
 
 ## Elan8::Documents cannot be resolved
 
-Install the pinned domain-library revision from [your first PDF](getting-started.md)
-and pass its model directory using --library-path. Use the same library in your editor.
+Run `doc42 --version` and make sure the executable is 0.8.1. Its document vocabulary
+is embedded; no separate library download or path is needed. Version 0.8.0 still
+needs the external vocabulary described in its own guide.
+
+If names are ambiguous after upgrading, remove the old document-library path so the
+vocabulary is loaded once. Keep paths for additional project libraries, and use
+domain-library 0.6.0 in your editor.
 
 ## No documents found
 

@@ -1,9 +1,9 @@
 # Documentation publishing
 
-The site uses VitePress. `docs/*.md` describes released Doc42 **0.8.0**;
-`docs/next/*.md` stages **0.8.1**, the embedded-library release. The version menu links
-to the current guide and the explicitly unreleased preview. Every preview page has a
-visible banner and `noindex` metadata. Generated files in `site/.generated` are disposable.
+The VitePress site publishes Doc42 **0.8.1** from `docs/*.md`. The version menu also
+serves the preserved **0.8.0** guide from `docs/0.8.0/`. Each guide names its applicable
+release; older guides retain the instructions their binaries need. Generated files in
+`site/.generated` are disposable.
 
 ```sh
 npm ci
@@ -13,27 +13,25 @@ npm run docs:preview
 ```
 
 The default host is <https://elan8.github.io/doc42-release/>. GitHub Pages uses Actions.
-Pull requests build and check the site; merging into main publishes it. A preview-docs
-merge does not publish executable releases or change the action's default version.
-Public guides exclude source-build instructions, internal administration references
-and private repository links.
+Pull requests build and check the site; merging into main publishes it. Public guides
+exclude source-build instructions, internal administration references and private links.
 
-## Promote 0.8.1 after publishing binaries
+## Publish a new version
 
-1. Validate packaged Windows and Linux binaries, samples and checksums from the source
-   release. Run `scripts/validate-release-examples.py` with `--doc42 <executable>
-   --version 0.8.1` and production access from a secret store. Do not pass a separate
-   document-library path; 0.8.1 must work with its embedded vocabulary.
-2. Publish the matching `v0.8.1` release assets and examples. Keep 0.8.0's tag and assets.
-3. Promote `docs/next/` to the current guide, update `release` in `scripts/prepare-docs.mjs`,
-   and update the theme, tests, README instructions and `action.yml` default together.
-   Remove preview labels for the released guide and retire Next until another preview
-   is available. Correct example-relative paths when moving source files.
-4. Ensure README, installation, example PDF links and CI commands name 0.8.1 and omit
-   the redundant vocabulary checkout. Retain paths for additional project libraries.
-5. Run site tests/build and packaged-example checks before merging promotion. Never
-   point the current download or action default at unpublished assets.
+1. Build and validate the Windows and Linux packages, sample PDFs and checksums. Run
+   `scripts/validate-release-examples.py --doc42 <executable> --version <version>` with
+   production access from a secret store. For 0.8.1 and later, omit a document-library
+   path; `--library-path` remains available for checking older executables.
+2. Preserve the previous current source pages under `docs/<previous-version>/` before
+   updating `docs/*.md`. Keep their release tags and assets. Add the archived version to
+   `archivedReleases` in `scripts/prepare-docs.mjs`; it also drives the theme version menu.
+3. Update current guides, examples and README together. Set `release` and the action's
+   default to the new version only when its validated assets are ready to publish.
+4. Run the site tests/build and packaged-example checks. Merge the reviewed publication
+   change, tag that exact public commit, and publish its matching assets and release notes.
+5. Verify the public download, action tag/default and deployed site all name the same version.
 
 0.8.1 embeds domain-library 0.6.0 through Spec42 0.60.2. Editors should use the same
-vocabulary version. The old library path can load duplicate definitions. The 0.8.0
-guide stays accurate for its executable and remains available at its release tag.
+vocabulary version. Remove the old document-library path when upgrading, while retaining
+paths for additional project libraries. A second vocabulary copy can cause ambiguous names.
+The 0.8.0 guide keeps its original external-library instructions.

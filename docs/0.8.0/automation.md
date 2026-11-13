@@ -2,10 +2,6 @@
 
 Run model/document validation before rendering:
 
-Doc42 0.8.1 embeds the document vocabulary. Remove its separate checkout and
-`--library-path` argument when upgrading from 0.8.0; retain paths for additional
-project libraries. The 0.8.1 action tag below will be available when the release is published.
-
 ```sh
 doc42 check model --json --cache-dir .cache/doc42
 doc42 ir model --doc ProductDocs::srs > out/srs.ir.json
@@ -20,13 +16,13 @@ availability with Elan8 before configuring shared use.
 A GitHub Actions step:
 
 ```yaml
-- uses: elan8/doc42-release@v0.8.1
-- run: doc42 build model --out out
+- uses: elan8/doc42-release@v0.8.0
+- run: doc42 build model --library-path .libraries/sysml-domain-libraries/model --out out
   env:
     ELAN8_TOKEN: ${{ secrets.ELAN8_TOKEN }}
 ```
 
-Pin the action version, which also pins its embedded domain vocabulary. The token is exchanged online
+Pin the action version and the domain-library revision. The token is exchanged online
 for a short-lived license; cached licenses are verified locally. See [authentication](authentication.md).
 Forked pull requests do not receive repository secrets; run check without generation
 and skip the build step rather than exposing a token to untrusted code.
