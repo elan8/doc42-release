@@ -119,7 +119,6 @@ alone:
 | `.feature`, `.a.b` | The value of a feature of the element, as in `{{= ...}}` |
 | `@Metadata.feature` | A value of a metadata annotation of the element, e.g. `@Rationale.text` |
 | `relation / content` | The content for each element a relation column names, each distinct line once: `verified-by / @VerificationMethod.kind` lists the methods of the cases that verify a requirement, `derived-from / id` the identifiers of its parents. One step only. |
-
 | `verdict`, `verdict-time`, `verdict-state`, `verdict-charge`, `verdict-detail` | The record in the table's `verdicts` file whose `case_name` is the element's qualified name. The file is the JSON list a run wrote. A missing file, a case with no record, or a record Doc42 cannot read is not a pass: the cell says `not run`. |
 
 An element without the feature or the annotation has an empty cell. A feature whose value
@@ -183,14 +182,14 @@ larger. Limit a large interconnection diagram with `@Diagram { depth = n; }` to 
 the page. Doc42 reports a figure whose smallest text would print below 5 pt
 (`doc42-figure-text-size`, with the printed size): narrow the view's `expose`, lower its
 depth, or split it into several views. Authored SVG figures are checked the same way, from
-the `font-size` they set. Standalone bold paragraphs are kept with the following content,
-which is useful for procedure IDs in prose files.
+the `font-size` they set. Standalone bold paragraphs are kept with the following content, which is useful
+for procedure IDs in prose files.
 
 `doc42 ir` exports document, section, table, row and figure provenance. Preserve this IR
 with the model baseline when reviewing generated content. Prose statements are authored
 content; a prose-only requirement is not an automatically evaluated acceptance predicate.
 
-Document metadata is supplied by `sysml-domain-libraries/model` through
-`--library-path`. Import `Elan8::Documents::*` in document packages and use the
-same library version in your editor. The former `Doc42::*` import and
-`doc42 library export` command are replaced by this shared library.
+Document metadata is embedded through Spec42's public domain-library bundle. Import
+`Elan8::Documents::*` in document packages. Use domain-library version 0.6.0 in your editor;
+`--library-path` adds project-specific libraries. The former `Doc42::*` import and
+`doc42 library export` command are replaced by this shared public vocabulary.

@@ -9,7 +9,11 @@ This repository publishes Doc42: the `doc42` command-line tool for Linux and
 Windows, and a GitHub Action that installs it. Doc42 is closed-source software by
 [Elan8](https://elan8.com).
 
-The documentation describes **Doc42 0.8.0**. See the [overview](docs/index.md).
+The documentation describes **Doc42 0.8.1**. See the [overview](docs/index.md).
+The public document vocabulary is embedded: no separate domain-library checkout is needed.
+When upgrading from 0.8.0, remove its vocabulary checkout and `--library-path` argument;
+keep paths for additional project libraries. The [0.8.0 guide](docs/0.8.0/index.md)
+remains available for older installations.
 The [documentation](docs/README.md) covers [getting started](docs/getting-started.md),
 [authoring documents](docs/authoring.md), [templates](docs/templates.md) and
 [automation](docs/automation.md). The [samples](examples) include four documents for a
@@ -45,18 +49,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      # Document metadata comes from the Elan8 domain libraries.
-      - uses: actions/checkout@v6
-        with:
-          repository: elan8/sysml-domain-libraries
-          path: .libraries/sysml-domain-libraries
+      - uses: elan8/doc42-release@v0.8.1
 
-      - uses: elan8/doc42-release@v0.8.0
-
-      - run: doc42 check model --library-path .libraries/sysml-domain-libraries/model
+      - run: doc42 check model
 
       - run: >-
-          doc42 build model --library-path .libraries/sysml-domain-libraries/model
+          doc42 build model
           --doc ProductDocs::srs --out out
         env:
           ELAN8_TOKEN: ${{ secrets.ELAN8_TOKEN }}
@@ -72,16 +70,16 @@ run a single command in the same step, pass it as `args` and set `ELAN8_TOKEN`
 on that step:
 
 ```yaml
-- uses: elan8/doc42-release@v0.8.0
+- uses: elan8/doc42-release@v0.8.1
   with:
-    args: build model --library-path .libraries/sysml-domain-libraries/model --doc ProductDocs::srs --out out
+    args: build model --doc ProductDocs::srs --out out
   env:
     ELAN8_TOKEN: ${{ secrets.ELAN8_TOKEN }}
 ```
 
 | Input | Default | Meaning |
 | --- | --- | --- |
-| `version` | `0.8.0` | Doc42 version to install |
+| `version` | `0.8.1` | Doc42 version to install |
 | `args` | empty | Arguments for one `doc42` run; empty installs only |
 | `working-directory` | `.` | Directory to run `doc42` in |
 
@@ -119,9 +117,9 @@ To obtain a license, contact Elan8 through [elan8.com/contact](https://elan8.com
 
 A document is a SysML view annotated with `@Elan8::Documents::Document`; its
 nested views are the sections. The metadata comes from
-[`sysml-domain-libraries`](https://github.com/elan8/sysml-domain-libraries): pass
-its `model` directory with `--library-path`, and use the same library path in your
-editor.
+[`sysml-domain-libraries`](https://github.com/elan8/sysml-domain-libraries), version
+0.6.0, embedded in Doc42. Use the same vocabulary version in your editor. Pass
+`--library-path` only for additional project libraries.
 
 ```sysml
 package ProductDocs {

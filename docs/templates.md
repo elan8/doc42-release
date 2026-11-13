@@ -9,7 +9,7 @@
 | `verification-report` | `MonitorDocs::verificationReport` | Evidence baseline, execution status, deviations, assessment, coverage and release conclusion |
 | `elan8-standard` | `DroneDocs::droneSrs` | General engineering publication with requirement tables and diagrams |
 
-Run `doc42 build examples/document-suite --doc MonitorDocs::crs --out out --library-path sysml-domain-libraries/model` and
+Run `doc42 build examples/document-suite --doc MonitorDocs::crs --out out` and
 substitute the view from the table; see [Getting started](getting-started.md) for the library path. `doc42 build ... --template srs` changes only layout;
 it does not select system requirements or insert sections. Classification comes from
 the authored document view, never an identifier prefix.

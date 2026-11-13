@@ -1,11 +1,9 @@
 # Documentation publishing
 
-The site uses VitePress. Sources live in versioned docs/ directories, not in the generated
-site/.generated directory. Version metadata is in site/versions.json. The site
-builds /0.6/, /0.7/, /latest/ and /next/; latest must name a released version.
-The navigation selector keeps the current page when the destination version has it,
-and falls back to that version's overview otherwise. Every guide displays its
-applicable release. Preview and alias pages are marked noindex.
+The VitePress site publishes Doc42 **0.8.1** from `docs/*.md`. The version menu also
+serves the preserved **0.8.0** guide from `docs/0.8.0/`. Each guide names its applicable
+release; older guides retain the instructions their binaries need. Generated files in
+`site/.generated` are disposable.
 
 ```sh
 npm ci
@@ -14,22 +12,26 @@ npm run docs:build
 npm run docs:preview
 ```
 
-Default hosting is https://elan8.github.io/doc42-release/. GitHub Pages must use
-GitHub Actions as its publishing source. The workflow builds and checks pull
-requests; only main publishes. A custom domain such as doc42.elan8.com can be
-configured later; set DOCS_BASE=/ for that build and configure the verified domain
-in Pages and DNS. The generated static output is site/.vitepress/dist.
+The default host is <https://elan8.github.io/doc42-release/>. GitHub Pages uses Actions.
+Pull requests build and check the site; merging into main publishes it. Public guides
+exclude source-build instructions, internal administration references and private links.
 
-The build uses the pinned VitePress 2 preview with its lockfile and patched Vite
-dependencies. Review updates deliberately; npm audit currently reports no advisories.
+## Publish a new version
 
-The 0.6 source pages are exact snapshots from tag v0.6.0. Do not change them to
-show 0.7 behavior. Advance latest and the action default only after the matching
-binaries and checksums are published. Doc42 0.7 is the current release; the next
-channel points to the separate 0.8 placeholder, which is explicitly unreleased.
-Use release tags for released examples and guides; never silently change old guides.
+1. Build and validate the Windows and Linux packages, sample PDFs and checksums. Run
+   `scripts/validate-release-examples.py --doc42 <executable> --version <version>` with
+   production access from a secret store. For 0.8.1 and later, omit a document-library
+   path; `--library-path` remains available for checking older executables.
+2. Preserve the previous current source pages under `docs/<previous-version>/` before
+   updating `docs/*.md`. Keep their release tags and assets. Add the archived version to
+   `archivedReleases` in `scripts/prepare-docs.mjs`; it also drives the theme version menu.
+3. Update current guides, examples and README together. Set `release` and the action's
+   default to the new version only when its validated assets are ready to publish.
+4. Run the site tests/build and packaged-example checks. Merge the reviewed publication
+   change, tag that exact public commit, and publish its matching assets and release notes.
+5. Verify the public download, action tag/default and deployed site all name the same version.
 
-Run scripts/validate-release-examples.py against the matching packaged executable
-with an ELAN8_TOKEN secret and the pinned domain library before marking 0.7 released.
-Never put a real token in docs, scripts or tests. The private source release workflow
-also validates actual PDFs with Windows and Linux binaries.
+0.8.1 embeds domain-library 0.6.0 through Spec42 0.60.2. Editors should use the same
+vocabulary version. Remove the old document-library path when upgrading, while retaining
+paths for additional project libraries. A second vocabulary copy can cause ambiguous names.
+The 0.8.0 guide keeps its original external-library instructions.

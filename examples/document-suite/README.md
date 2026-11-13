@@ -5,13 +5,11 @@ requirements are illustrative prose-only definitions; test and report sections a
 authored editorial content, with no executed evidence or automated verdict.
 
 ```sh
-doc42 check examples/document-suite --library-path sysml-domain-libraries/model
-doc42 build examples/document-suite --doc MonitorDocs::crs --out out --library-path sysml-domain-libraries/model
-doc42 build examples/document-suite --doc MonitorDocs::srs --out out --library-path sysml-domain-libraries/model
-doc42 build examples/document-suite --doc MonitorDocs::test --out out --library-path sysml-domain-libraries/model
-doc42 build examples/document-suite --doc MonitorDocs::verificationReport --out out --library-path sysml-domain-libraries/model
-# or all four in one run:
-doc42 build examples/document-suite --all --out out --library-path sysml-domain-libraries/model
+doc42 check examples/document-suite
+doc42 build examples/document-suite --doc MonitorDocs::crs --out out
+doc42 build examples/document-suite --doc MonitorDocs::srs --out out
+doc42 build examples/document-suite --doc MonitorDocs::test --out out
+doc42 build examples/document-suite --doc MonitorDocs::verificationReport --out out
 ```
 
 Copy this directory to begin a project. Replace the model, qualified references,
