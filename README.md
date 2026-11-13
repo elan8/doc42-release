@@ -10,6 +10,10 @@ Windows, and a GitHub Action that installs it. Doc42 is closed-source software b
 [Elan8](https://elan8.com).
 
 The documentation describes **Doc42 0.8.0**. See the [overview](docs/index.md).
+**0.8.1 is being prepared:** its public document vocabulary is embedded, so document
+builds will need no separate domain-library checkout. See the
+[0.8.1 preview guide](docs/next/index.md) and [upgrade instructions](docs/next/index.md#upgrade-from-080).
+The installation and CI commands below remain for the downloadable 0.8.0 release.
 The [documentation](docs/README.md) covers [getting started](docs/getting-started.md),
 [authoring documents](docs/authoring.md), [templates](docs/templates.md) and
 [automation](docs/automation.md). The [samples](examples) include four documents for a
@@ -49,6 +53,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           repository: elan8/sysml-domain-libraries
+          ref: 4c73195b2f64176696b2e0f4d72606bfd044dcef
           path: .libraries/sysml-domain-libraries
 
       - uses: elan8/doc42-release@v0.8.0
