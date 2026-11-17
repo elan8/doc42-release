@@ -1,14 +1,27 @@
-# Doc42 0.8.1
+# Generate your first engineering PDF
 
-Generate engineering PDFs from SysML v2 document views with **Doc42 0.8.1**.
+Generate engineering PDFs from SysML v2 document views with **Doc42 0.8.1**. The standard
+library and public document vocabulary are embedded, so no separate domain-library checkout is
+needed. Choose the documentation version that matches your installation.
 
-The standard library and public document vocabulary are embedded. No separate
-domain-library checkout is needed.
+## Get started
 
-Start with [installation](installation.md), then [your first PDF](getting-started.md).
-Learn [document authoring](authoring.md), [templates](templates.md),
-[API-token authentication](authentication.md), and [automation](automation.md).
-The [CLI reference](cli.md) and [troubleshooting guide](troubleshooting.md) explain failures.
+1. [Install Doc42](installation.md) for Windows or Linux.
+2. [Create an API token and sign in](authentication.md) so Doc42 can obtain a license.
+3. [Build your first PDF](getting-started.md) from the included example.
+
+## Work with your documents
+
+- [Document authoring](authoring.md): the model owns content and section order.
+- [Templates](templates.md): choose a document template and its sample view.
+- [Examples](examples.md): runnable models you can adapt.
+
+## Put it into your workflow
+
+[Automate validation and builds](automation.md), and look up every command in the
+[CLI reference](cli.md).
+
+If something goes wrong, start with [troubleshooting](troubleshooting.md).
 
 ## Compatibility
 

@@ -14,6 +14,13 @@ npm run docs:build
 npm run docs:preview
 ```
 
+The site shares its theme, header, navigation, version notice, source link and footer with the
+Spec42 documentation site (<https://elan8.github.io/spec42/>). `site/.vitepress/shared.mjs` and
+`site/.vitepress/theme/` are identical in both repositories: change them in both, and keep
+Doc42's own values (sidebar groups, repository, footer text) in `site/.vitepress/config.mjs` and
+`scripts/prepare-docs.mjs`. The guides are grouped by task (Start here, Use Doc42, Automate, Help
+and reference), and the home page of each release follows the same structure as Spec42's.
+
 The default host is <https://elan8.github.io/doc42-release/>; the home page opens the latest
 release. GitHub Pages uses Actions. Addresses from before versioned routes (`/<page>` and
 `/<archived-version>/<page>`) forward to the matching versioned guide through

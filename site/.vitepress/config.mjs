@@ -1,19 +1,20 @@
 import { defineVersionedConfig } from '@viteplus/versions';
-import { release } from '../../scripts/prepare-docs.mjs';
-const pages = { index: 'Overview', installation: 'Installation', 'getting-started': 'Your first PDF', authentication: 'Accounts and API tokens', authoring: 'Authoring documents', templates: 'Templates', examples: 'Examples', automation: 'Automation', cli: 'CLI reference', troubleshooting: 'Troubleshooting' };
-const base = process.env.DOCS_BASE || '/doc42-release/';
+import { sharedConfig } from './shared.mjs';
+import { groups, release } from '../../scripts/prepare-docs.mjs';
+
 export default defineVersionedConfig({
-  title: 'Doc42', description: 'Engineering documents from SysML v2 models — guides and CLI reference.',
-  base, cleanUrls: true,
-  versionsConfig: { current: `v${release}`, versionSwitcher: { text: 'Version', includeCurrentVersion: true } }, lastUpdated: false,
-  head: [['link', { rel: 'icon', href: base + 'logo.svg' }]],
-  markdown: { languages: ['yaml', 'sh', 'powershell'], languageAlias: { sysml: 'text', typ: 'text', typst: 'text' } },
-  themeConfig: {
-    logo: '/logo.svg', siteTitle: 'Doc42 docs',
-    nav: [{ component: 'VersionSwitcher' }, { text: 'Elan8', link: 'https://www.elan8.com' }, { text: 'Product', link: 'https://www.elan8.com/products/doc42' }, { text: `Download ${release}`, link: `https://github.com/elan8/doc42-release/releases/tag/v${release}` }],
-    sidebar: [{ text: 'Doc42', items: Object.entries(pages).map(([page, title]) => ({ text: title, link: page === 'index' ? '/' : `/${page}` })) }],
-    search: { provider: 'local' }, outline: [2, 3],
-    socialLinks: [{ icon: 'github', link: 'https://github.com/elan8/doc42-release' }],
-    footer: { message: 'Models and documents stay local. License retrieval and refresh require online access.', copyright: 'Elan8' }
-  }
+  ...sharedConfig({
+    product: 'Doc42',
+    slug: 'doc42',
+    repo: 'elan8/doc42-release',
+    base: process.env.DOCS_BASE || '/doc42-release/',
+    latest: `v${release}`,
+    description: 'Doc42 user guides: generate engineering documents from SysML v2 models. Installation, authoring, templates, automation and CLI reference.',
+    footer: 'Models and documents stay local. License retrieval and refresh require online access.',
+    license: 'Proprietary',
+    groups
+  }),
+  // The current release is the latest; older ones are frozen under `archive/`. The switcher is the
+  // `VersionSwitcher` component placed in the shared nav; the plugin's own dropdown would repeat it.
+  versionsConfig: { current: `v${release}`, versionSwitcher: false }
 });
