@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { generate, root } from '../scripts/prepare-docs.mjs';
+import { legacyRedirects, redirectPage } from '../scripts/legacy-redirects.mjs';
 const { release, archivedReleases, pages } = generate();
-const output = page => readFileSync(resolve(root, 'site/.generated', page), 'utf8');
+// Current pages are generated into `site/src`; an archived release is `site/archive/v<version>/`.
+const output = page => readFileSync(resolve(root, page.includes('/') ? 'site/archive/v' + page : 'site/src/' + page), 'utf8');
 
 test('current installation and examples use the same release', () => {
   assert.equal(release, '0.8.1');
@@ -36,7 +38,7 @@ test('every repository-relative Markdown link resolves', () => {
 
 test('public documentation excludes internal permission and administration references', () => {
   assert.equal(existsSync(resolve(root, 'CAPABILITIES.md')), false);
-  assert.equal(existsSync(resolve(root, 'site/.generated/capabilities.md')), false);
+  assert.equal(existsSync(resolve(root, 'site/src/capabilities.md')), false);
   for (const file of ['README.md', 'docs/README.md', 'site/.vitepress/config.mjs', ...pages.flatMap(page => ['docs/' + page, ...archivedReleases.map(version => 'docs/' + version + '/' + page)])]) {
     const content = readFileSync(resolve(root, file), 'utf8');
     assert.doesNotMatch(content, /CAPABILITIES\.md|capabilities\.md|doc42\.generate|run42\.simulate|Products and permissions|\/capabilities\b/i, file);
@@ -56,4 +58,19 @@ test('0.8.0 retains its external-library instructions while 0.8.1 uses the embed
   }
   assert.match(output('index.md'), /0\.6\.0, embedded/);
   assert.match(output('troubleshooting.md'), /remove the old document-library path/);
+});
+
+test('addresses from before versioned routes forward to the matching versioned guide', () => {
+  const redirects = new Map(legacyRedirects());
+  assert.equal(redirects.get('installation.html'), `/doc42-release/v${release}/installation`);
+  assert.equal(redirects.get('0.8.0/getting-started.html'), '/doc42-release/v0.8.0/getting-started');
+  assert.equal(redirects.get('0.8.0/index.html'), '/doc42-release/v0.8.0/');
+  assert.equal(redirects.has('index.html'), false, 'the plugin already redirects the home page');
+  for (const page of pages.filter(page => page !== 'index.md')) {
+    assert.ok(redirects.has(page.replace(/.md$/, '.html')), page);
+    assert.ok(existsSync(resolve(root, 'site/src', page)), `redirect target for ${page} exists`);
+  }
+  const html = redirectPage('/doc42-release/v0.8.1/cli');
+  assert.ok(html.includes('http-equiv="refresh" content="0; url=/doc42-release/v0.8.1/cli"'));
+  assert.ok(html.includes('rel="canonical" href="/doc42-release/v0.8.1/cli"'));
 });
