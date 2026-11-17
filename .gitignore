@@ -1,4 +1,5 @@
 node_modules/
-site/.generated/
+site/src/
+site/archive/
 site/.vitepress/cache/
 site/.vitepress/dist/

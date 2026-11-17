@@ -1,9 +1,11 @@
 # Documentation publishing
 
-The VitePress site publishes Doc42 **0.8.1** from `docs/*.md`. The version menu also
+The VitePress site publishes Doc42 **0.8.1** from `docs/*.md`. The version switcher also
 serves the preserved **0.8.0** guide from `docs/0.8.0/`. Each guide names its applicable
-release; older guides retain the instructions their binaries need. Generated files in
-`site/.generated` are disposable.
+release; older guides retain the instructions their binaries need. Versions are routed by
+[`@viteplus/versions`](https://viteplus.github.io/versions/): `npm run docs:prepare` generates
+the current guide into `site/src` and each archived one into `site/archive/v<version>`, and
+the site serves them at `/v<version>/`. Both generated folders are disposable.
 
 ```sh
 npm ci
@@ -12,7 +14,10 @@ npm run docs:build
 npm run docs:preview
 ```
 
-The default host is <https://elan8.github.io/doc42-release/>. GitHub Pages uses Actions.
+The default host is <https://elan8.github.io/doc42-release/>; the home page opens the latest
+release. GitHub Pages uses Actions. Addresses from before versioned routes (`/<page>` and
+`/<archived-version>/<page>`) forward to the matching versioned guide through
+`scripts/legacy-redirects.mjs`, because other sites and the action's documentation link to them.
 Pull requests build and check the site; merging into main publishes it. Public guides
 exclude source-build instructions, internal administration references and private links.
 
@@ -24,7 +29,8 @@ exclude source-build instructions, internal administration references and privat
    path; `--library-path` remains available for checking older executables.
 2. Preserve the previous current source pages under `docs/<previous-version>/` before
    updating `docs/*.md`. Keep their release tags and assets. Add the archived version to
-   `archivedReleases` in `scripts/prepare-docs.mjs`; it also drives the theme version menu.
+   `archivedReleases` in `scripts/prepare-docs.mjs`; the generated archive drives the version
+   switcher, and the legacy redirects cover it automatically.
 3. Update current guides, examples and README together. Set `release` and the action's
    default to the new version only when its validated assets are ready to publish.
 4. Run the site tests/build and packaged-example checks. Merge the reviewed publication
