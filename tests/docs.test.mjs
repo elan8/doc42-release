@@ -12,7 +12,8 @@ test('current installation and examples use the same release', () => {
   assert.equal(release, '0.8.1');
   assert.match(output('installation.md'), /doc42-0\.8\.1-windows-x64\.zip/);
   assert.match(output('getting-started.md'), /doc42 build examples\/first-document --out out/);
-  assert.match(readFileSync(resolve(root, 'action.yml'), 'utf8'), /default: "0\.8\.1"/);
+  // The action installs the newest release (0.8.2 is Linux only); the documentation describes 0.8.1.
+  assert.match(readFileSync(resolve(root, 'action.yml'), 'utf8'), /default: "0\.8\.2"/);
   assert.match(output('authentication.md'), /48 hours after issuance/);
 });
 
