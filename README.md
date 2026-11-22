@@ -9,7 +9,7 @@ This repository publishes Doc42: the `doc42` command-line tool for Linux and
 Windows, and a GitHub Action that installs it. Doc42 is closed-source software by
 [Elan8](https://elan8.com).
 
-The documentation describes **Doc42 0.8.1**. See the [overview](docs/index.md).
+The documentation describes **Doc42 0.8.2**. See the [overview](docs/index.md).
 The public document vocabulary is embedded: no separate domain-library checkout is needed.
 When upgrading from 0.8.0, remove its vocabulary checkout and `--library-path` argument;
 keep paths for additional project libraries. The [0.8.0 guide](docs/0.8.0/index.md)
@@ -49,7 +49,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: elan8/doc42-release@v0.8.1
+      - uses: elan8/doc42-release@v0.8.2
 
       - run: doc42 check model
 
@@ -70,7 +70,7 @@ run a single command in the same step, pass it as `args` and set `ELAN8_TOKEN`
 on that step:
 
 ```yaml
-- uses: elan8/doc42-release@v0.8.1
+- uses: elan8/doc42-release@v0.8.2
   with:
     args: build model --doc ProductDocs::srs --out out
   env:
@@ -79,7 +79,7 @@ on that step:
 
 | Input | Default | Meaning |
 | --- | --- | --- |
-| `version` | `0.8.1` | Doc42 version to install |
+| `version` | `0.8.2` | Doc42 version to install |
 | `args` | empty | Arguments for one `doc42` run; empty installs only |
 | `working-directory` | `.` | Directory to run `doc42` in |
 
